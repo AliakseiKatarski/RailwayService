@@ -25,6 +25,9 @@
       <li class="login" sec:authorize="!isAuthenticated()">
        <a th:href="@{/login}">Log in</a>
       </li>
+      <li class="buyTicket">
+        <a th:href="@{/tickets}">Buy Ticket</a>
+      </li>
       <li class="logout" sec:authorize="isAuthenticated()">
       <form th:action="@{/logout}" method="post" th:hidden="true" name="Logout">
         <input type="submit" value="Logout" />

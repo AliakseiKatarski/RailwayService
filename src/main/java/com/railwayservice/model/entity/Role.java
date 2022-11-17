@@ -3,7 +3,6 @@ package com.railwayservice.model.entity;
 import lombok.Data;
 import lombok.ToString;
 import javax.persistence.*;
-import java.util.Collection;
 import java.util.Set;
 
 

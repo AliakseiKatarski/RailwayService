@@ -10,6 +10,7 @@ import com.railwayservice.model.repository.RoleRepository;
 import com.railwayservice.model.repository.UserRepository;
 import com.railwayservice.service.AdminService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -37,7 +38,11 @@ public class AdminServiceImpl implements AdminService {
 
     @Override
     public void deleteUserById(Integer id) {
-        userRepository.deleteById(id);
+        try {
+            userRepository.deleteById(id);
+        }catch (EmptyResultDataAccessException e){
+            ////
+        }
     }
 
     @Override

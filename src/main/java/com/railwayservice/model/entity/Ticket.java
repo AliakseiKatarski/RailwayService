@@ -10,18 +10,21 @@ public class Ticket {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="user_id")
     private User user;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name ="departure_id")
     private Departure departure;
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="departure_station_id")
     private Station departureStation;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "train_id")
+    private Train train;
     @Column(name="departure_time")
     private LocalDateTime departureTime;
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "arrival_station_id")
     private Station arrivalStation;
     @Column(name = "arrival_time")
