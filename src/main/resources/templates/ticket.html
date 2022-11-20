@@ -1,30 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <title>Tickets</title>
+    <title>Title</title>
 </head>
 <body>
-<div class="ui-menu" th:insert="blocks/navbar:: navbar"/>
-<div class="wrapper">
-    <div class="content">
-        <br>
-        <h3 sec:authorize="isAnonymous()" th:text="'Welcome, user'"/>
-        <h3 sec:authorize="isAuthenticated()">Welcome, <span sec:authentication="name"/></h3>
-        <br>
-        <form class="form-style" th:action="@{/departures}" method="post" th:object="${userTicket}">
-        <span><label for="from">From:</label>
-            <input type="text" id="from" placeholder="Departure Station" th:field="*{departureStation.name}"/></span>
-            <span><label for="to">To:</label>
-            <input type="text" id="to" placeholder="Arrival Station" th:field="*{arrivalStation.name}"/></span>
-            <span><label for="date">When:</label>
-            <input type="date" id="date" placeholder="dd.mm.yyyy" th:field="*{departureDate}"/></span>
-            <span><label for="time">at</label>
-            <input type="time" id="time" th:field="*{departureTime}"/></span>
-            <input type="submit" value="Search ticket"/>
-        </form>
-    </div>
-</div>
+
 </body>
 </html>

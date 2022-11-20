@@ -1,35 +1,34 @@
 package com.railwayservice.controller;
 
-import com.railwayservice.dto.UserDepartureDto;
-import com.railwayservice.service.TicketService;
+import com.railwayservice.dto.DepartureDto;
+import com.railwayservice.model.entity.Departure;
+import com.railwayservice.service.CityService;
+import com.railwayservice.service.DepartureService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 public class DepartureController {
-
-    private final TicketService ticketService;
+    private final DepartureService departureService;
+    private final CityService cityService;
 
     @GetMapping(value = "/departure")
     public String tickets(Model model){
-        model.addAttribute("userTicket",new UserDepartureDto());
+        model.addAttribute("departure",new DepartureDto());
         return "departure";
     }
 
-    @PostMapping(value = "/tickets")
-    public String findDepartures(@ModelAttribute("userTicket") UserDepartureDto userTicketDto, Model model){
-
-
-
-        return "ticket";
+    @PostMapping(value = "/departure")
+    public String findDepartures(@ModelAttribute("departure") DepartureDto departureDto, Model model){
+        List<Departure> departures=departureService.findDepartureForUser(departureDto);
+        model.addAttribute("foundDepartures", departures);
+        return "departure";
     }
-
-
-
 
 }

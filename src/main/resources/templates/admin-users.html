@@ -5,7 +5,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <title>Admin page</title>
 </head>
-<div class="ui-menu" th:insert="blocks/navbar:: navbar"/>
+<div class="ui-menu" th:insert="blocks/header:: navbar"/>
 <body>
 <div class="container">
   <div class="row">
@@ -35,7 +35,7 @@
         <form th:action="@{/admin}" method="post">
           <input type="hidden" name="hiddenAction" value="deleteUser"/>
           <input type="hidden" th:name="userId" th:value="${user.id}"/>
-          <input class="button" type="submit" value="Delete User"/>
+          <input class="btn btn-primary mt-2 mt-sm-0" type="submit" value="Delete User"/>
         </form>
         <form th:action="@{/admin}" method="post">
           <input type="hidden" name="hiddenAction" value="changeUserRole"/>
@@ -43,11 +43,9 @@
           <select class="select" th:name="newRole">
                <option value="ROLE_USER">User</option>
                <option value="ROLE_ADMIN">Admin</option>
-            <input class="button" type="submit" value="Change role"/>
+            <input class="btn btn-primary mt-2 mt-sm-0" type="submit" value="Change role"/>
           </select>
         </form>
-
-
       </td>
     </tr>
     </tbody>

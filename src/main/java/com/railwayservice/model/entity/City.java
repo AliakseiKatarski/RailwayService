@@ -15,8 +15,6 @@ public class City {
     private Integer id;
     @Column
     private String name;
-    @OneToOne(mappedBy = "city")
-    private Station station;
     @OneToMany(mappedBy = "departureCity",cascade = CascadeType.ALL)
     private Set<Departure> departures;
 }

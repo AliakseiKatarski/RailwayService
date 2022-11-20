@@ -3,11 +3,12 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Data
 @Entity
-@EqualsAndHashCode(of = {"id","train","route","departureTime","arrivalTime"})
+@EqualsAndHashCode(of = {"id","train","departureTime","arrivalTime"})
 @ToString(of = {"id","departureTime","arrivalTime"})
 public class Departure {
     @Id
@@ -26,7 +27,11 @@ public class Departure {
     @JoinColumn(name="arrival_city_id")
     private City arrivalCity;
     @Column(name = "departure_time")
-    private LocalDateTime departureTime;
+    private LocalTime departureTime;
     @Column(name="arrival_time")
-    private LocalDateTime arrivalTime;
+    private LocalTime arrivalTime;
+    @Column(name = "arrival_date")
+    private LocalDate arrivalDate;
+    @Column(name = "departure_date")
+    private LocalDate departureDate;
 }

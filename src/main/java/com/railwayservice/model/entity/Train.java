@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -21,4 +22,6 @@ public class Train {
     private String name;
     @OneToMany(mappedBy = "train")
     private Set<Departure> departures;
+    @OneToMany(mappedBy = "train",fetch = FetchType.EAGER)
+    private List<Carriage> carriageList;
 }

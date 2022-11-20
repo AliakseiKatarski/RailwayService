@@ -13,4 +13,7 @@ public class Carriage {
     private String type;
     @Column(name="seats_number")
     private int seatsNumber;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "train_id")
+    private Train train;
 }

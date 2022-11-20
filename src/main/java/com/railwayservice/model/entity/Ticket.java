@@ -2,7 +2,6 @@ package com.railwayservice.model.entity;
 
 import lombok.Data;
 import javax.persistence.*;
-import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -16,19 +15,6 @@ public class Ticket {
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name ="departure_id")
     private Departure departure;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="departure_station_id")
-    private Station departureStation;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "train_id")
-    private Train train;
-    @Column(name="departure_time")
-    private LocalDateTime departureTime;
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "arrival_station_id")
-    private Station arrivalStation;
-    @Column(name = "arrival_time")
-    private LocalDateTime arrivalTime;
     @Column(name = "carriage_number")
     private int carriageNumber;
     @Column(name="seat_number")

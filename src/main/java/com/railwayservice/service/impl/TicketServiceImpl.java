@@ -1,6 +1,5 @@
 package com.railwayservice.service.impl;
 
-import com.railwayservice.dto.UserDepartureDto;
 import com.railwayservice.model.entity.Ticket;
 import com.railwayservice.model.repository.TicketRepository;
 import com.railwayservice.service.TicketService;
@@ -35,9 +34,4 @@ public class TicketServiceImpl implements TicketService {
         return userTickets;
     }
 
-    @Override
-    public Ticket findTicketForUser(UserDepartureDto userTicketDto) {
-        return null;
-
-    }
 }
