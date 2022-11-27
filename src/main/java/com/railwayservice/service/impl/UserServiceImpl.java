@@ -1,5 +1,6 @@
 package com.railwayservice.service.impl;
 
+import com.railwayservice.dto.UserDto;
 import com.railwayservice.dto.UserRegistrationDto;
 import com.railwayservice.mappers.UserRegistrationDtoMapper;
 import com.railwayservice.model.entity.User;
@@ -31,17 +32,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findUserByUsername(String username) {
+        return userRepository.findUserByUsername(username);
+    }
+
+    @Override
     public void saveUser(UserRegistrationDto userRegistrationDto) {
         User user=registrationDtoMapper.userRegistrationDtoToUser(userRegistrationDto);
-        user.setUsername(userRegistrationDto.getUsername());
         user.setPassword(encoder.encode(userRegistrationDto.getPassword()));
         user.setRole(roleRepository.findByName("ROLE_USER"));
-        UserInformation userInfo=new UserInformation();
+        UserInformation userInfo=registrationDtoMapper.userRegistrationDtoToUserInformation(userRegistrationDto);
         userInfo.setUser(user);
-        userInfo.setName(userRegistrationDto.getName());
-        userInfo.setSurname(userRegistrationDto.getSurname());
-        userInfo.setEmail(userRegistrationDto.getEmail());
-        userInfo.setPhoneNumber(userRegistrationDto.getPhoneNumber());
         informationRepository.save(userInfo);
         userRepository.save(user);
     }

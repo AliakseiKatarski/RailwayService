@@ -1,7 +1,6 @@
 package com.railwayservice.controller;
 import com.railwayservice.dto.UserRegistrationDto;
 import com.railwayservice.service.UserService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

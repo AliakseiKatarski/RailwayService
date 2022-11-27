@@ -23,6 +23,6 @@ public class UserRegistrationDto {
     @NotNull(message = "Enter your phone number please")
     @Pattern(regexp = "^(\\+375|80)(29|25|44|33)(\\d{3})(\\d{2})(\\d{2})$",message = "Invalid phone number")
     private String phoneNumber;
-    @Email(message = "This email is invalid")
+    @Email(message = "This email is invalid,please enter a valid email")
     private String email;
 }

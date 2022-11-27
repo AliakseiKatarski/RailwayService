@@ -34,4 +34,6 @@ public class Departure {
     private LocalDate arrivalDate;
     @Column(name = "departure_date")
     private LocalDate departureDate;
+    @Column(name="price")
+    private double price;
 }

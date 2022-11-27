@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Make order here</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="wrapper">
+    <div class="content">
+        <div class="block" align="center">
+            <h1>Your ticket</h1>
+            <span  th:text="|${session.ticket.departure.departureCity.name} ———————> ${session.ticket.departure.arrivalCity.name}|"/>
+            <p> Departure time       Arrival Time </p>
+            <span th:text="|${session.ticket.departure.departureTime} ———————> ${session.ticket.departure.arrivalTime}|"/>
+            <h2>Price</h2>
+            <span th:text="${session.ticket.price}"/>
+        </div>
+        <h4 class="mb-3">Payment form</h4>
+        <form th:action="@{/order/do-order}" method="post" th:object="${card}">
+            <div class="col-md-6 " align="center">
+                <label  for="cardNumber" class="form-label" th:align="center">Номер кредитной карты</label>
+                <input type="text" class="form-control" th:align="center" id="cardNumber" th:field="*{cardNumber}">
+                <p th:errors = "*{cardNumber}" class="text-danger"
+                   th:if="${#fields.hasErrors('cardNumber')}"></p>
+            </div>
+        <hr class="my-4">
+        <button class="btn btn-primary" type="submit">Order payment</button>
+        </form>
+</div>
+</main>
+
+
+    </div>
+</div>
+
+</body>
+</html>

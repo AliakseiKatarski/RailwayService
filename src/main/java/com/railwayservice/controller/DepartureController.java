@@ -10,17 +10,19 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
 public class DepartureController {
     private final DepartureService departureService;
-    private final CityService cityService;
 
     @GetMapping(value = "/departure")
-    public String tickets(Model model){
+    public String departure(Model model){
         model.addAttribute("departure",new DepartureDto());
+        model.addAttribute("currentDate", LocalDate.now());
         return "departure";
     }
 

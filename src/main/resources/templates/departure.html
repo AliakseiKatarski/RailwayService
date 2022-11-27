@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
     <title>Departure</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-<!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
 
 </head>
 <body>
 <div class="ui-menu" th:insert="blocks/header:: navbar"/>
-
-<form class="form-inline" th:action="@{/departure}" method="post" th:object="${departure}">
+<form class="form-inline"   th:action="@{/departure}" method="post" th:object="${departure}">
   <label for="From">From:</label>
   <label class="mr-sm-2 mb-0 sr-only" for="From">Departure City</label>
   <input type="text" class="form-control mr-sm-2 mb-2 mb-sm-0"
@@ -23,7 +21,7 @@
 
   <label for="Departure Date">When</label>
   <label class="mr-sm-2 mb-0 sr-only" for="Departure Date">Departure Date</label>
-  <input type="date"  class="form-control mr-sm-2 mb-2 mb-sm-0"
+  <input type="date" th:min="${currentDate}"  class="form-control mr-sm-2 mb-2 mb-sm-0"
          id="Departure Date" name="departureTime" placeholder="dd.mm.yyyy" th:field="*{departureDate}">
 
   <label for="Arrival Time">At</label>
@@ -31,6 +29,7 @@
   <input type="time" class="form-control mr-sm-2 mb-2 mb-sm-0"
          id="Arrival Time" name="arrivalTime" placeholder="dd.mm.yyyy" th:field="*{departureTime}">
   <button type="submit" class="btn btn-primary mt-2 mt-sm-0">Search</button>
+
   <div th:if="${foundDepartures}">
     <div class="container">
       <div class="row">
@@ -45,6 +44,7 @@
           <th >Arrival Time</th>
           <th >Departure City</th>
           <th >Arrival City</th>
+          <th> Price $</th>
           <th>Actions</th>
         </tr>
         </thead>
@@ -56,9 +56,10 @@
           <th th:text="${departures.arrivalTime}"/>
           <th th:text="${departures.departureCity.name}"/>
           <th th:text="${departures.arrivalCity.name}"/>
+          <th th:text="${departures.price}"/>
           <td>
             <form>
-              <a th:href="@{/ticket}" class="btn btn-primary mt-2 mt-sm-0">Buy Ticket</a>
+              <a th:href="@{/order(departureId=${departures.id})}" class="btn btn-primary mt-2 mt-sm-0">Select departure</a>
             </form>
         </tr>
         </tbody>

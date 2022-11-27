@@ -3,7 +3,6 @@ package com.railwayservice.service.impl;
 import com.railwayservice.dto.DepartureDto;
 import com.railwayservice.model.entity.Departure;
 import com.railwayservice.model.repository.DepartureRepository;
-import com.railwayservice.service.CityService;
 import com.railwayservice.service.DepartureService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -28,7 +27,7 @@ public class DepartureServiceImpl implements DepartureService {
     @Override
     public List<Departure> findDepartureForUser(DepartureDto departureDto) {
         List<Departure> departures=departureRepository.findDepartureForUser(departureDto.getDepartureCity(),
-                departureDto.getArrivalCity(),departureDto.getDepartureTime());
+                departureDto.getArrivalCity(),departureDto.getDepartureTime(),departureDto.getDepartureDate());
         return departures;
     }
 

@@ -11,7 +11,6 @@ import org.mapstruct.factory.Mappers;
 
 @Mapper(componentModel = "spring",injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface UserMapper {
-    UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
     @Mappings({
             @Mapping(source = "user.userInformation.name",target = "name"),
             @Mapping(source = "user.userInformation.surname",target = "surname"),
@@ -19,7 +18,6 @@ public interface UserMapper {
             @Mapping(source = "user.userInformation.email",target = "email")
     })
     UserDto userToDto(User user);
-    User userDtoToUser(UserDto userDto);
 
 
 }

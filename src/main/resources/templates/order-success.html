@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Successful order</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="ui-menu" th:insert="blocks/header:: navbar"/>
+<div class="container px-4 py-5" align="center">
+    <h2 class="pb-2 border-bottom">You have successfully paid for the ticket!</h2>
+
+        <div>
+            <h2>Your train:</h2>
+            <h4></h4>
+            <p th:text="|${purchasedTicket.departure.train.name} ${purchasedTicket.departure.train.number}|"></p>
+            </div>
+    <br>
+            <div>
+                <h4>Your departure date:</h4>
+                <p th:text="${purchasedTicket.departure.departureDate}"></p>
+            </div>
+    <br>
+                <h4>Your departure time:</h4>
+                <p th:text="${purchasedTicket.departure.departureTime}"></p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

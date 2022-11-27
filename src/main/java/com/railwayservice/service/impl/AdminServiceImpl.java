@@ -32,22 +32,11 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public UserDto findUserById(Integer id) {
-        return userMapper.userToDto(userRepository.findById(id).get());
-    }
-
-    @Override
     public void deleteUserById(Integer id) {
         try {
             userRepository.deleteById(id);
         }catch (EmptyResultDataAccessException e){
-            ////
         }
-    }
-
-    @Override
-    public void updateUser(UserDto user) {
-        userRepository.save(userMapper.userDtoToUser(user));
     }
 
     @Override

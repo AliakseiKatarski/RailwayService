@@ -34,6 +34,7 @@ public class AdminController {
         setModelData(model);
         return "admin-users";
     }
+
     @PostMapping(value = "/admin",params = {"hiddenAction=changeUserRole"})
     public String changeRole(@RequestParam("username") String username,
                              @RequestParam("newRole") String newRole,Model model){
@@ -41,7 +42,6 @@ public class AdminController {
         setModelData(model);
         return "admin-users";
     }
-
 
     private void setModelData(Model model) {
         List<UserDto> users = adminService.findAllUsers();

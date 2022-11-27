@@ -22,6 +22,4 @@ public class Train {
     private String name;
     @OneToMany(mappedBy = "train")
     private Set<Departure> departures;
-    @OneToMany(mappedBy = "train",fetch = FetchType.EAGER)
-    private List<Carriage> carriageList;
 }
