@@ -2,9 +2,12 @@ package com.railwayservice.model.entity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Data
 @Entity
@@ -27,13 +30,20 @@ public class Departure {
     @JoinColumn(name="arrival_city_id")
     private City arrivalCity;
     @Column(name = "departure_time")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime departureTime;
     @Column(name="arrival_time")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalTime arrivalTime;
     @Column(name = "arrival_date")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate arrivalDate;
     @Column(name = "departure_date")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate departureDate;
     @Column(name="price")
     private double price;
+    @OneToMany(mappedBy = "departure",cascade = CascadeType.ALL)
+    private List<Ticket> tickets;
+
 }

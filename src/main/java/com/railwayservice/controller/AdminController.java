@@ -1,7 +1,9 @@
 package com.railwayservice.controller;
 import com.railwayservice.dto.RoleDto;
 import com.railwayservice.dto.UserDto;
+import com.railwayservice.model.entity.Departure;
 import com.railwayservice.service.AdminService;
+import com.railwayservice.service.DepartureService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AdminController {
     private final AdminService adminService;
+    private final DepartureService departureService;
 
 
     @GetMapping(value = "/admin")
@@ -27,6 +30,29 @@ public class AdminController {
         model.addAttribute("users", users);
         return "admin-users";
     }
+
+    @GetMapping(value = "/admin/departures")
+    public String departures(Model model){
+        List<Departure> departures =departureService.findAllDepartures();
+        model.addAttribute("departures",departures);
+        return "admin-departures";
+    }
+
+    @GetMapping(value = "/admin/departures/new")
+    public String newDeparture(Model model){
+        Departure departure=new Departure();
+        model.addAttribute("newDeparture",departure);
+        return "admin-departures-new";
+    }
+
+
+    @PostMapping(value = "/admin/departures/new")
+    public String createNewDeparture(@ModelAttribute("newDeparture") Departure departure,Model model){
+        departureService.createNewDeparture(departure);
+        setModelData(model);
+        return "admin-departures";
+    }
+
 
     @PostMapping(value = "/admin", params = {"hiddenAction=deleteUser"})
     public String deleteUser(@RequestParam("userId") Integer userId, Model model) {
@@ -43,11 +69,20 @@ public class AdminController {
         return "admin-users";
     }
 
+    @PostMapping(value = "/admin/departures",params = {"hiddenAction=deleteDeparture"})
+    public String deleteDeparture(@RequestParam("departureId") Integer departureId,Model model){
+        departureService.deleteById(departureId);
+        setModelData(model);
+        return "admin-departures";
+    }
+
     private void setModelData(Model model) {
         List<UserDto> users = adminService.findAllUsers();
         model.addAttribute("users", users);
         List<RoleDto> roles=adminService.findAllRoles();
         model.addAttribute("roles",roles);
+        List<Departure> departures=departureService.findAllDepartures();
+        model.addAttribute("departures",departures);
 
     }
 

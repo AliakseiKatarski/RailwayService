@@ -1,6 +1,5 @@
 package com.railwayservice.service.impl;
 
-import com.railwayservice.dto.UserDto;
 import com.railwayservice.dto.UserRegistrationDto;
 import com.railwayservice.mappers.UserRegistrationDtoMapper;
 import com.railwayservice.model.entity.User;
@@ -10,7 +9,6 @@ import com.railwayservice.model.repository.UserInformationRepository;
 import com.railwayservice.model.repository.UserRepository;
 import com.railwayservice.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;

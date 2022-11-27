@@ -10,14 +10,12 @@ import java.util.Set;
 
 @Data
 @Entity
-@EqualsAndHashCode(of = {"id","number","name"})
-@ToString(of = {"id","number","name"})
+@EqualsAndHashCode(of = {"id","name"})
+@ToString(of = {"id","name"})
 public class Train {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column
-    private int number;
     @Column
     private String name;
     @OneToMany(mappedBy = "train")

@@ -5,7 +5,9 @@ import com.railwayservice.model.entity.Departure;
 import com.railwayservice.model.repository.DepartureRepository;
 import com.railwayservice.service.DepartureService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -13,11 +15,6 @@ import java.util.List;
 public class DepartureServiceImpl implements DepartureService {
     private final DepartureRepository departureRepository;
 
-    @Override
-    public void deleteDepartureById(Integer id) {
-        departureRepository.deleteById(id);
-
-    }
 
     @Override
     public Departure findDepartureById(Integer id) {
@@ -31,5 +28,21 @@ public class DepartureServiceImpl implements DepartureService {
         return departures;
     }
 
+    @Override
+    public List<Departure> findAllDepartures() {
+        return departureRepository.findAll();
+    }
 
+    @Override
+    public void createNewDeparture(Departure departure) {
+        departureRepository.save(departure);
+    }
+
+    @Override
+    public void deleteById(Integer id) {
+        try {
+            departureRepository.deleteById(id);
+        }catch (EmptyResultDataAccessException e){
+        }
+    }
 }

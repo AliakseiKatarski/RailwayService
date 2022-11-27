@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New departure</title>
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+  <link rel="stylesheet"
+        href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <div th:if="${param.success}">
+        <div class="alert alert-info">Departure successful added</div>
+      </div>
+      <h1>Add new departure</h1>
+      <form th:action="@{/admin/departures/new}" method="post" th:object="${newDeparture}">
+        <div class="form-group">
+          <label class="control-label" for="Train">
+            Train
+          </label>
+          <input type="text" id="Train" class="form-control" th:field="*{train.name}"/>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="Route">
+            Route
+          </label>
+          <input id="Route" class="form-control" type="text" th:field="*{route.type}" />
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="Departure City">
+            Departure City
+          </label>
+          <input id="Departure City" class="form-control"  th:field="*{departureCity.name}"/>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="Arrival City">
+            Arrival City
+          </label>
+          <input id="Arrival City" class="form-control"  th:field="*{arrivalCity.name}"/>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="Departure Time">
+            Departure Time
+          </label>
+          <input id="Departure Time" class="form-control" type="time"  th:field="*{departureTime}"/>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="Arrival Time">
+            Arrival Time
+          </label>
+          <input id="Arrival Time" class="form-control" type="time"  th:field="*{arrivalTime}"/>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="Arrival Date">
+            Arrival Date
+          </label>
+          <input type="date" id="Arrival Date" class="form-control" placeholder="dd.mm.yyyy"  th:field="*{arrivalDate}"/>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="Departure Date">
+            Departure Date
+          </label>
+          <input type="date" id="Departure Date" class="form-control" placeholder="dd.mm.yyyy"  th:field="*{departureDate}"/>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="Price">
+            Price
+          </label>
+          <input id="Price" class="form-control"  th:field="*{price}"/>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success">Create new departure</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

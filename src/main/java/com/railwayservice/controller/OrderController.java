@@ -40,12 +40,12 @@ public class OrderController {
 
     }
 
-
     @PostMapping(value = "/order/do-order")
     public String makeOrder(@SessionAttribute("ticket") TicketDto ticketDto,
                              @ModelAttribute("card") @Valid CreditCardDto cardDto, BindingResult bindingResult,
                             Model model){
         if(bindingResult.hasErrors()){
+
             return "order";
         }
 
@@ -53,14 +53,4 @@ public class OrderController {
         model.addAttribute("purchasedTicket",ticketDto);
         return "order-success";
     }
-
-
-
-
-
-
-
-
-
-
 }
