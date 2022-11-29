@@ -15,6 +15,6 @@ public class City {
     private Integer id;
     @Column
     private String name;
-    @OneToMany(mappedBy = "departureCity",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "departureCity",cascade = CascadeType.MERGE)
     private Set<Departure> departures;
 }

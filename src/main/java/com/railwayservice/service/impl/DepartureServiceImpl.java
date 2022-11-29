@@ -1,19 +1,26 @@
 package com.railwayservice.service.impl;
 
 import com.railwayservice.dto.DepartureDto;
+import com.railwayservice.mappers.DepartureMapper;
 import com.railwayservice.model.entity.Departure;
 import com.railwayservice.model.repository.DepartureRepository;
+import com.railwayservice.service.CityService;
 import com.railwayservice.service.DepartureService;
+import com.railwayservice.service.TrainService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class DepartureServiceImpl implements DepartureService {
     private final DepartureRepository departureRepository;
+    private final DepartureMapper departureMapper;
+    private final TrainService trainService;
+    private final CityService cityService;
 
 
     @Override
@@ -29,13 +36,18 @@ public class DepartureServiceImpl implements DepartureService {
     }
 
     @Override
-    public List<Departure> findAllDepartures() {
-        return departureRepository.findAll();
+    public List<DepartureDto> findAllDepartures() {
+        return departureRepository.findAll().stream()
+                .map(departureMapper::departureToDto)
+                .collect(Collectors.toList());
     }
 
     @Override
-    public void createNewDeparture(Departure departure) {
+    public void createNewDeparture(DepartureDto departureDto) {
+        Departure departure=departureMapper.departureDtoToDeparture(departureDto);
         departureRepository.save(departure);
+
+
     }
 
     @Override

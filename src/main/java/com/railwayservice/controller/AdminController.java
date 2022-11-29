@@ -1,14 +1,13 @@
 package com.railwayservice.controller;
+import com.railwayservice.dto.DepartureDto;
 import com.railwayservice.dto.RoleDto;
 import com.railwayservice.dto.UserDto;
-import com.railwayservice.model.entity.Departure;
 import com.railwayservice.service.AdminService;
 import com.railwayservice.service.DepartureService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 
@@ -33,22 +32,22 @@ public class AdminController {
 
     @GetMapping(value = "/admin/departures")
     public String departures(Model model){
-        List<Departure> departures =departureService.findAllDepartures();
+        List<DepartureDto> departures =departureService.findAllDepartures();
         model.addAttribute("departures",departures);
         return "admin-departures";
     }
 
     @GetMapping(value = "/admin/departures/new")
     public String newDeparture(Model model){
-        Departure departure=new Departure();
+        DepartureDto departure=new DepartureDto();
         model.addAttribute("newDeparture",departure);
         return "admin-departures-new";
     }
 
 
     @PostMapping(value = "/admin/departures/new")
-    public String createNewDeparture(@ModelAttribute("newDeparture") Departure departure,Model model){
-        departureService.createNewDeparture(departure);
+    public String createNewDeparture(@ModelAttribute("newDeparture") DepartureDto departureDto,Model model){
+        departureService.createNewDeparture(departureDto);
         setModelData(model);
         return "admin-departures";
     }
@@ -81,7 +80,7 @@ public class AdminController {
         model.addAttribute("users", users);
         List<RoleDto> roles=adminService.findAllRoles();
         model.addAttribute("roles",roles);
-        List<Departure> departures=departureService.findAllDepartures();
+        List<DepartureDto> departures=departureService.findAllDepartures();
         model.addAttribute("departures",departures);
 
     }
