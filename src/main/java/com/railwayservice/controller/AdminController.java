@@ -44,14 +44,12 @@ public class AdminController {
         return "admin-departures-new";
     }
 
-
     @PostMapping(value = "/admin/departures/new")
     public String createNewDeparture(@ModelAttribute("newDeparture") DepartureDto departureDto,Model model){
         departureService.createNewDeparture(departureDto);
         setModelData(model);
         return "admin-departures";
     }
-
 
     @PostMapping(value = "/admin", params = {"hiddenAction=deleteUser"})
     public String deleteUser(@RequestParam("userId") Integer userId, Model model) {

@@ -1,5 +1,4 @@
 package com.railwayservice.model.repository;
-import com.railwayservice.dto.UserDto;
 import com.railwayservice.model.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

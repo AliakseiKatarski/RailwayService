@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 public class TrainServiceImpl implements TrainService {
     private final TrainRepository trainRepository;
 
-
     @Override
     public Train findByTrainName(String trainName) {
         return trainRepository.findByName(trainName);

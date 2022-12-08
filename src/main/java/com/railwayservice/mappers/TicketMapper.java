@@ -8,4 +8,5 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring",injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface TicketMapper {
     Ticket ticketDtoToTicket(TicketDto ticketDto);
+    TicketDto ticketToDto(Ticket ticket);
 }

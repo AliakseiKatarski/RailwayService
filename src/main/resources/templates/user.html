@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+<body>
+<div class="ui-menu" th:insert="blocks/header:: navbar"/>
+<main>
+    <h1>Hello dear user. This is your personal page.</h1>
+    <hr class="col-3 col-md-2 mb-5">
+
+    <div class="row g-5">
+        <div class="col-md-6">
+            <ul class="icon-list ps-0">
+                <li class="d-flex align-items-start mb-1"><a th:href="@{user/tickets}">My tickets</a></li>
+            </ul>
+        </div>
+
+    </div>
+</main>
+</div>
+</body>
+</html>

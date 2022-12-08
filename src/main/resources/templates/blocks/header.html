@@ -28,6 +28,9 @@
       <li class="buyTicket">
         <a th:href="@{/departure}">Buy Ticket</a>
       </li>
+      <li class="Personal page" sec:authorize="isAuthenticated()">
+        <a th:href="@{/user}">Personal page</a>
+      </li>
       <li class="logout" sec:authorize="isAuthenticated()">
       <form th:action="@{/logout}" method="post" th:hidden="true" name="Logout">
         <input type="submit" value="Logout" />

@@ -11,28 +11,38 @@ import com.railwayservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
-
+/**
+ *Class responsible for working with users.
+ */
 
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+
     private final RoleRepository roleRepository;
+
     private final UserRegistrationDtoMapper registrationDtoMapper;
+
     private final UserInformationRepository informationRepository;
+
     private final PasswordEncoder encoder;
 
-    @Override
-    public List<User> findAllUsers() {
-        return userRepository.findAll();
-    }
+    /**
+     * @param username Username in database.
+     * @return User with this username.
+     */
 
     @Override
     public User findUserByUsername(String username) {
         return userRepository.findUserByUsername(username);
     }
+
+    /**
+     * Method responsible for registration new user.
+     * @param userRegistrationDto has data about user.
+     */
 
     @Override
     public void saveUser(UserRegistrationDto userRegistrationDto) {
@@ -44,6 +54,5 @@ public class UserServiceImpl implements UserService {
         informationRepository.save(userInfo);
         userRepository.save(user);
     }
-
 
 }

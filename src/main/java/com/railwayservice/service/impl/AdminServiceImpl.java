@@ -15,13 +15,25 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+/**
+ * Class responsible for administrator functionality
+ */
+
 @Service
 @RequiredArgsConstructor
 public class AdminServiceImpl implements AdminService {
     private final UserRepository userRepository;
+
     private final UserMapper userMapper;
+
     private final RoleRepository roleRepository;
+
     private final RoleMapper roleMapper;
+
+    /**
+     * Return all users from database.Needed to view and delete users.
+     */
 
     @Override
     public List<UserDto> findAllUsers() {
@@ -31,6 +43,11 @@ public class AdminServiceImpl implements AdminService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * Deletes user from database.
+     * @param id = user id.
+     */
+
     @Override
     public void deleteUserById(Integer id) {
         try {
@@ -39,6 +56,12 @@ public class AdminServiceImpl implements AdminService {
         }
     }
 
+    /**
+     * Changing role of user.
+     * @param username Username in database.
+     * @param roleName {Admin,User}.
+     */
+
     @Override
     public void setNewRole(String username, String roleName) {
        Role role=roleRepository.findByName(roleName);
@@ -46,6 +69,10 @@ public class AdminServiceImpl implements AdminService {
        user.setRole(role);
        userRepository.save(user);
     }
+
+    /**
+     * Return all roles from database.Needed to role changing functionality.
+     */
 
     @Override
     public List<RoleDto> findAllRoles() {
